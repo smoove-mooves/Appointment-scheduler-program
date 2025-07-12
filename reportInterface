@@ -1,0 +1,9 @@
+package controller;
+
+/** This interface is for the lambda expression used in the reportsScreenController */
+
+public interface reportInterface {
+
+    int incrementTotalReports(int n);
+
+}
