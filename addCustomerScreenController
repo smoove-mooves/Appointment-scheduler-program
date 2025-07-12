@@ -1,0 +1,122 @@
+package controller;
+
+import DAO.CountriesConnection;
+import DAO.CustomersConnection;
+import DAO.FirstLevelDivisionsConnection;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import model.Countries;
+import model.FirstLevelDivisions;
+
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+import static javafx.fxml.FXMLLoader.load;
+
+/** This class is the controller for adding new customers */
+
+public class addCustomerScreenController implements Initializable {
+
+    Stage stage;
+    Parent scene;
+
+    @FXML
+    private TextField addCustomerAddressTxt;
+
+    @FXML
+    private TextField addCustomerContactPhoneTxt;
+
+    @FXML
+    private ComboBox<Countries> addCustomerCountry;
+
+    @FXML
+    private TextField addCustomerNameTxt;
+
+    @FXML
+    private TextField addCustomerPostalCodeTxt;
+
+    @FXML
+    private ComboBox<FirstLevelDivisions> addCustomerState;
+
+    /** This method allows the user to select a customer's country from a combo-box and sets the items for the divisionId combo-box based on which country the user selects */
+
+    @FXML
+    void onActionSelectCountry(ActionEvent event) throws SQLException {
+        Countries selectedCountry = (Countries) addCustomerCountry.getSelectionModel().getSelectedItem();
+
+        if(selectedCountry.getCountryId() == 1){
+            addCustomerState.setItems(FirstLevelDivisionsConnection.getAllUSDivisions());
+        }
+
+        if(selectedCountry.getCountryId() == 2){
+            addCustomerState.setItems(FirstLevelDivisionsConnection.getAllUKDivisions());
+        }
+
+        if(selectedCountry.getCountryId() == 3){
+            addCustomerState.setItems(FirstLevelDivisionsConnection.getAllCanadaDivisions());
+        }
+
+    }
+
+    @FXML
+    void onActionSelectState(ActionEvent event) throws IOException{
+
+    }
+
+    /** This method cancels the customer creation process and brings the user back to the appointments screen */
+
+    @FXML
+    void onActionCancelAddedCustomer(ActionEvent event) throws IOException {
+
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = load(getClass().getResource("/view/appointmentsScreen.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
+
+    }
+
+    /** This method adds a customer that the user creates into the database and the customers tableview */
+
+    @FXML
+    void onActionSaveCustomer(ActionEvent event) throws IOException, SQLException {
+        String customerName = addCustomerNameTxt.getText();
+        String customerAddress = addCustomerAddressTxt.getText();
+        String customerNumber = addCustomerContactPhoneTxt.getText();
+        int customerDivisionId = Integer.parseInt(String.valueOf(addCustomerState.getSelectionModel().getSelectedItem().getFirstLevelDivisonsId()));
+        String customerPostalCode = addCustomerPostalCodeTxt.getText();
+
+        int rowsAffected = CustomersConnection.insertCustomer(0, customerName, customerAddress , customerNumber , customerDivisionId, customerPostalCode);
+
+        if(rowsAffected > 0){
+            System.out.println("Customer added successfully");
+        }
+
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = load(getClass().getResource("/view/appointmentsScreen.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
+
+    }
+
+    /** This method initializes the add-customer screen */
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            addCustomerCountry.setItems(CountriesConnection.getAllCountries());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+}
