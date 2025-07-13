@@ -1,0 +1,30 @@
+package model;
+
+/** This class is the model portion for creating firstLevelDivision objects */
+
+public class FirstLevelDivisions {
+
+    private int firstLevelDivisonsId;
+    private String firstLevelDivisonName;
+    public int countryID;
+
+    /** This method is for creating a new first-level-division object */
+
+    public FirstLevelDivisions(int firstLevelDivisionsId , String firstLevelDivisionName , int countryID){
+
+        this.firstLevelDivisonsId = firstLevelDivisionsId;
+        this.firstLevelDivisonName = firstLevelDivisionName;
+        this.countryID = countryID;
+
+    }
+
+    public int getFirstLevelDivisonsId() {
+        return firstLevelDivisonsId;
+    }
+
+    @Override
+    public String toString(){
+        return firstLevelDivisonName;
+    }
+
+}
