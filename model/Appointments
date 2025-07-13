@@ -1,0 +1,77 @@
+package model;
+
+import java.time.LocalDateTime;
+
+/** This class is the model portion for creating appointment objects */
+
+public class Appointments {
+
+    int appointmentId = 0;
+    String appointmentTitle;
+    String appointmentDescription;
+    String appointmentLocation;
+    String appointmentType;
+    LocalDateTime start;
+    LocalDateTime end;
+    int customerId;
+    int userId;
+    int contactId;
+
+    /** This constructor is for creating a new appointment object */
+
+    public Appointments(int appointmentId , String appointmentTitle , String appointmentDescription , String appointmentLocation , String appointmentType ,
+                        LocalDateTime start , LocalDateTime end , int customerId , int userId , int contactId){
+
+        this.appointmentId = appointmentId;
+        this.appointmentTitle = appointmentTitle;
+        this.appointmentDescription = appointmentDescription;
+        this.appointmentLocation = appointmentLocation;
+        this.appointmentType = appointmentType;
+        this.start = start;
+        this.end = end;
+        this.customerId = customerId;
+        this.userId = userId;
+        this.contactId = contactId;
+    }
+
+    public int getAppointmentId() {
+        return appointmentId;
+    }
+
+    public String getAppointmentTitle() {
+        return appointmentTitle;
+    }
+
+    public String getAppointmentDescription() {
+        return appointmentDescription;
+    }
+
+    public String getAppointmentLocation() {
+        return appointmentLocation;
+    }
+
+    public String getAppointmentType() {
+        return appointmentType;
+    }
+
+    public LocalDateTime getStart() {
+        return start;
+    }
+
+    public LocalDateTime getEnd() {
+        return end;
+    }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public int getContactId() {
+        return contactId;
+    }
+
+}
