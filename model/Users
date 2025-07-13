@@ -1,0 +1,48 @@
+package model;
+
+import java.time.LocalDateTime;
+
+/** This class is the model portion for creating user objects */
+
+public class Users {
+
+    public int userId;
+    public String userName;
+    public String userPassword;
+    LocalDateTime createDate;
+    String createdBy;
+    LocalDateTime lastUpdate;
+    String lastUpdatedBy;
+
+    /** This constructor is for creating a new user object */
+
+    public Users(int userId , String userName , String userPassword, LocalDateTime createDate, String createdBy, LocalDateTime lastUpdate, String lastUpdatedBy){
+
+        this.userId = userId;
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.createDate = createDate;
+        this.createdBy = createdBy;
+        this.lastUpdate = lastUpdate;
+        this.lastUpdatedBy = lastUpdatedBy;
+
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public String getUserName(){
+        return userName;
+    }
+
+    public String getUserPassword(){
+        return userPassword;
+    }
+
+    @Override
+    public String toString(){
+        return userName;
+    }
+
+}
