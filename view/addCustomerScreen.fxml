@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="290.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.addCustomerScreenController">
+   <children>
+      <VBox prefHeight="290.0" prefWidth="400.0">
+         <children>
+            <Label text="Add customer">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="120.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="ID:">
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="addCustomerIDTxt" disable="true" promptText="Auto-generated">
+               <VBox.margin>
+                  <Insets left="170.0" right="20.0" top="-25.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="addCustomerNameTxt">
+               <VBox.margin>
+                  <Insets left="170.0" right="20.0" />
+               </VBox.margin>
+            </TextField>
+            <Label text="Name:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" top="-25.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="addCustomerAddressTxt">
+               <VBox.margin>
+                  <Insets left="170.0" right="20.0" />
+               </VBox.margin>
+            </TextField>
+            <Label text="Address:">
+               <VBox.margin>
+                  <Insets left="20.0" top="-25.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="addCustomerContactPhoneTxt">
+               <VBox.margin>
+                  <Insets left="170.0" right="20.0" />
+               </VBox.margin>
+            </TextField>
+            <Label text="Contact phone:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" top="-25.0" />
+               </VBox.margin>
+            </Label>
+            <ComboBox fx:id="addCustomerCountry" onAction="#onActionSelectCountry" prefWidth="210.0">
+               <VBox.margin>
+                  <Insets left="170.0" />
+               </VBox.margin>
+            </ComboBox>
+            <Label text="Country:">
+               <VBox.margin>
+                  <Insets left="20.0" top="-25.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="addCustomerState" onAction="#onActionSelectState" prefWidth="210.0">
+               <VBox.margin>
+                  <Insets left="170.0" />
+               </VBox.margin>
+            </ComboBox>
+            <Label text="State/Providence:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" top="-25.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="addCustomerPostalCodeTxt">
+               <VBox.margin>
+                  <Insets left="170.0" right="20.0" />
+               </VBox.margin>
+            </TextField>
+            <Label text="Postal code:">
+               <VBox.margin>
+                  <Insets left="20.0" top="-25.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="addCustomerCancelBtn" mnemonicParsing="false" onAction="#onActionCancelAddedCustomer" text="Cancel">
+               <VBox.margin>
+                  <Insets left="300.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="addCustomerSaveBtn" mnemonicParsing="false" onAction="#onActionSaveCustomer" text="Save">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" top="-39.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
