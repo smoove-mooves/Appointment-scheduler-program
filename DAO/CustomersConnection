@@ -1,0 +1,179 @@
+package DAO;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import model.Customers;
+import static helper.JDBC.jdbcUrl;
+import static helper.JDBC.userName;
+import static helper.JDBC.password;
+import static java.sql.DriverManager.getConnection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+/** This class is for all JDBC methods related to the customers table in MySQL */
+
+public class CustomersConnection {
+
+    /** This method gets all customers from the database */
+
+    public static ObservableList<Customers> getAllCustomers() throws SQLException {
+
+        ObservableList<Customers> customersObservableList = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM customers";
+        PreparedStatement ps = getConnection(jdbcUrl, userName, password).prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+
+            int customerId = rs.getInt("Customer_ID");
+            String customerName = rs.getString("Customer_Name");
+            String customerAddress = rs.getString("Address");
+            String customerNumber = rs.getString("Phone");
+            int customerDivisionId = rs.getInt("Division_ID");
+            String customerPostalCode = rs.getString("Postal_Code");
+            Customers customer = new Customers(customerId, customerName, customerAddress, customerNumber, customerDivisionId, customerPostalCode);
+            customersObservableList.add(customer);
+        }
+
+        return customersObservableList;
+
+    }
+
+    /** This method returns all the different customerIDs in the database */
+
+    public static ObservableList<Integer> getAllCustomerIds() throws SQLException {
+
+        ObservableList<Integer> allCustomerIdsObservableList = FXCollections.observableArrayList();
+        String sql = "SELECT DISTINCT Customer_ID FROM customers";
+        PreparedStatement ps = getConnection(jdbcUrl, userName, password).prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            int Customer_ID = rs.getInt("Customer_ID");
+            allCustomerIdsObservableList.add(Customer_ID);
+        }
+
+        return allCustomerIdsObservableList;
+
+    }
+
+    /** This method inserts a new customer into the database */
+
+    public static int insertCustomer(int customerId, String customerName, String customerAddress, String customerNumber, int customerDivisionId, String customerPostalCode) throws SQLException {
+
+        String sql = "INSERT INTO customers (Customer_ID, Customer_Name, Address, Phone, Division_ID, Postal_Code) VALUES (null,?,?,?,?,?)";
+        PreparedStatement ps = getConnection(jdbcUrl, userName, password).prepareStatement(sql);
+        ps.setString(1, customerName);
+        ps.setString(2, customerAddress);
+        ps.setString(3, customerNumber);
+        ps.setInt(4, customerDivisionId);
+        ps.setString(5, customerPostalCode);
+        int rowsAffected = ps.executeUpdate();
+
+        return rowsAffected;
+
+    }
+
+    /** This method updates a customer in the database */
+
+    public static int updateCustomer(int customerId, String customerName, String customerAddress, String customerNumber, int customerDivisionId, String customerPostalCode) throws SQLException{
+
+        String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Phone = ?, Division_ID = ?, Postal_Code = ? WHERE Customer_ID = ?";
+        PreparedStatement ps = getConnection(jdbcUrl, userName, password).prepareStatement(sql);
+        ps.setString(1, customerName);
+        ps.setString(2, customerAddress);
+        ps.setString(3, customerNumber);
+        ps.setInt(4, customerDivisionId);
+        ps.setString(5, customerPostalCode);
+        ps.setInt(6, customerId);
+        int rowsAffected = ps.executeUpdate();
+
+        return rowsAffected;
+
+    }
+
+    /** This method deletes a customer from the database */
+
+    public static int deleteCustomer(int customerId) throws SQLException {
+        String sql = "DELETE FROM customers WHERE Customer_ID=?";
+        PreparedStatement ps = getConnection(jdbcUrl, userName, password).prepareStatement(sql);
+        ps.setInt(1, customerId);
+        int rowsAffected = ps.executeUpdate();
+
+        return rowsAffected;
+
+    }
+
+    /** This method gets all customers in the United States from the database
+     * @return*/
+
+    public static ObservableList<Customers> getAllUSCustomers() throws SQLException {
+
+        ObservableList<Customers> usCustomersObservableList = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM customers WHERE Division_ID < 56";
+        PreparedStatement ps = getConnection(jdbcUrl, userName, password).prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+
+            int customerId = rs.getInt("Customer_ID");
+            String customerName = rs.getString("Customer_Name");
+            String customerAddress = rs.getString("Address");
+            String customerNumber = rs.getString("Phone");
+            int customerDivisionId = rs.getInt("Division_ID");
+            String customerPostalCode = rs.getString("Postal_Code");
+            Customers customer = new Customers(customerId, customerName, customerAddress, customerNumber, customerDivisionId, customerPostalCode);
+            usCustomersObservableList.add(customer);
+        }
+
+        return usCustomersObservableList;
+
+    }
+
+    /** This method gets all customers in Canada from the database */
+
+    public static ObservableList<Customers> getAllCanadaCustomers() throws SQLException {
+
+        ObservableList<Customers> canadaCustomersObservableList = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM customers WHERE Division_ID > 59 AND Division_ID < 73";
+        PreparedStatement ps = getConnection(jdbcUrl, userName, password).prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+
+            int customerId = rs.getInt("Customer_ID");
+            String customerName = rs.getString("Customer_Name");
+            String customerAddress = rs.getString("Address");
+            String customerNumber = rs.getString("Phone");
+            int customerDivisionId = rs.getInt("Division_ID");
+            String customerPostalCode = rs.getString("Postal_Code");
+            Customers customer = new Customers(customerId, customerName, customerAddress, customerNumber, customerDivisionId, customerPostalCode);
+            canadaCustomersObservableList.add(customer);
+        }
+
+        return canadaCustomersObservableList;
+
+    }
+
+    /** This method gets all customers in the United Kingdom from the database */
+
+    public static ObservableList<Customers> getAllUKCustomers() throws SQLException {
+
+        ObservableList<Customers> ukCustomersObservableList = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM customers WHERE Division_ID > 100";
+        PreparedStatement ps = getConnection(jdbcUrl, userName, password).prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+
+            int customerId = rs.getInt("Customer_ID");
+            String customerName = rs.getString("Customer_Name");
+            String customerAddress = rs.getString("Address");
+            String customerNumber = rs.getString("Phone");
+            int customerDivisionId = rs.getInt("Division_ID");
+            String customerPostalCode = rs.getString("Postal_Code");
+            Customers customer = new Customers(customerId, customerName, customerAddress, customerNumber, customerDivisionId, customerPostalCode);
+            ukCustomersObservableList.add(customer);
+        }
+
+        return ukCustomersObservableList;
+
+    }
+
+}
