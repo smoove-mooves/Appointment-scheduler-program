@@ -1,0 +1,38 @@
+package DAO;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import model.Contacts;
+
+import java.sql.*;
+import static helper.JDBC.jdbcUrl;
+import static helper.JDBC.userName;
+import static helper.JDBC.password;
+import static java.sql.DriverManager.getConnection;
+
+/** This class is for all JDBC methods related to the contacts table in MySQL */
+
+public class ContactsConnection {
+
+    /** This method gets all contacts from the database */
+
+    public static ObservableList<Contacts> getAllContacts() throws SQLException {
+
+        ObservableList<Contacts> contactsObservableList = FXCollections.observableArrayList();
+        String sql = "SELECT * from contacts";
+        PreparedStatement ps = getConnection(jdbcUrl, userName, password).prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+
+            int contactId = rs.getInt("Contact_ID");
+            String contactName = rs.getString("Contact_Name");
+            String contactEmail = rs.getString("Email");
+            Contacts contact = new Contacts(contactId, contactName, contactEmail);
+            contactsObservableList.add(contact);
+        }
+
+        return contactsObservableList;
+
+    }
+
+}
