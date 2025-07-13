@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="420.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.addAppointmentScreenController">
+   <children>
+      <VBox prefHeight="420.0" prefWidth="400.0">
+         <children>
+            <Label text="Add appointment">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="100.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="addAppointmentIDTxt" disable="true" promptText="Auto-generated">
+               <VBox.margin>
+                  <Insets left="150.0" right="20.0" />
+               </VBox.margin>
+            </TextField>
+            <Label text="ID:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" top="-25.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="addAppointmentTitleTxt">
+               <VBox.margin>
+                  <Insets left="150.0" right="20.0" />
+               </VBox.margin>
+            </TextField>
+            <Label text="Title:">
+               <VBox.margin>
+                  <Insets left="20.0" top="-25.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="addAppointmentTypeTxt">
+               <VBox.margin>
+                  <Insets left="150.0" right="20.0" />
+               </VBox.margin>
+            </TextField>
+            <Label text="Type:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" top="-25.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="addAppointmentDescriptionTxt">
+               <VBox.margin>
+                  <Insets left="150.0" right="20.0" />
+               </VBox.margin>
+            </TextField>
+            <Label text="Description:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" top="-25.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="addAppointmentLocationTxt">
+               <VBox.margin>
+                  <Insets left="150.0" right="20.0" />
+               </VBox.margin>
+            </TextField>
+            <Label text="Location:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" top="-25.0" />
+               </VBox.margin>
+            </Label>
+            <DatePicker fx:id="addAppointmentStartDate" prefHeight="25.0" prefWidth="230.0">
+               <VBox.margin>
+                  <Insets left="150.0" />
+               </VBox.margin>
+            </DatePicker>
+            <Label text="Start date:">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="-25.0" />
+               </VBox.margin>
+            </Label>
+            <ComboBox fx:id="addAppointmentStartTime" prefWidth="230.0">
+               <VBox.margin>
+                  <Insets left="150.0" />
+               </VBox.margin>
+            </ComboBox>
+            <Label text="Start time:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" top="-25.0" />
+               </VBox.margin>
+            </Label>
+            <DatePicker fx:id="addAppointmentEndDate" prefHeight="25.0" prefWidth="230.0">
+               <VBox.margin>
+                  <Insets left="150.0" />
+               </VBox.margin>
+            </DatePicker>
+            <Label text="End date:">
+               <VBox.margin>
+                  <Insets left="20.0" top="-25.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="addAppointmentEndTime" prefWidth="230.0">
+               <VBox.margin>
+                  <Insets left="150.0" />
+               </VBox.margin>
+            </ComboBox>
+            <Label text="End time:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" top="-25.0" />
+               </VBox.margin>
+            </Label>
+            <ComboBox fx:id="addAppointmentCustomerID" prefWidth="230.0">
+               <VBox.margin>
+                  <Insets left="150.0" />
+               </VBox.margin>
+            </ComboBox>
+            <Label text="Customer ID:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" top="-25.0" />
+               </VBox.margin>
+            </Label>
+            <ComboBox fx:id="addAppointmentUserID" prefWidth="230.0">
+               <VBox.margin>
+                  <Insets left="150.0" />
+               </VBox.margin>
+            </ComboBox>
+            <Label text="User ID:">
+               <VBox.margin>
+                  <Insets left="20.0" top="-25.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="addAppointmentContact" prefWidth="230.0">
+               <VBox.margin>
+                  <Insets left="150.0" />
+               </VBox.margin>
+            </ComboBox>
+            <Label text="Contact:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" top="-25.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="addAppointmentCancelBtn" mnemonicParsing="false" onAction="#onActionCancelAddedAppointment" text="Cancel">
+               <VBox.margin>
+                  <Insets left="297.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="addAppointmentSaveBtn" mnemonicParsing="false" onAction="#onActionSaveAppointment" text="Save">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" top="-39.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
