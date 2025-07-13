@@ -1,0 +1,174 @@
+package controller;
+
+import DAO.CountriesConnection;
+import DAO.CustomersConnection;
+import DAO.FirstLevelDivisionsConnection;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import model.Countries;
+import model.Customers;
+import model.FirstLevelDivisions;
+
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+import static javafx.fxml.FXMLLoader.load;
+
+/** This class is the controller for modifying a selected customer */
+
+public class modifyCustomerScreenController implements Initializable {
+
+    Stage stage;
+    Parent scene;
+
+    @FXML
+    private TextField modifyCustomerAddressTxt;
+
+    @FXML
+    private TextField modifyCustomerContactPhone;
+
+    @FXML
+    private ComboBox<Countries> modifyCustomerCountry;
+
+    @FXML
+    private TextField modifyCustomerIDTxt;
+
+    @FXML
+    private TextField modifyCustomerNameTxt;
+
+    @FXML
+    private ComboBox<FirstLevelDivisions> modifyCustomerState;
+
+    @FXML
+    private TextField modifyCustomerPostalCodeTxt;
+
+    /** This method cancels the modify-customer process and brings the user back to the appointments screen */
+
+    @FXML
+    void onActionCancelModifyCustomer(ActionEvent event) throws IOException {
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = load(getClass().getResource("/view/appointmentsScreen.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
+
+    }
+
+    /** This method saves the modified customer data and adds the modified-customer to the database and customer tableview */
+
+    @FXML
+    void onActionSaveModifiedCustomer(ActionEvent event) throws IOException, SQLException {
+        int customerId = Integer.parseInt(String.valueOf(modifyCustomerIDTxt.getText()));
+        String customerName = modifyCustomerNameTxt.getText();
+        String customerAddress = modifyCustomerAddressTxt.getText();
+        String customerNumber = modifyCustomerContactPhone.getText();
+        int customerDivisionId = Integer.parseInt(String.valueOf(modifyCustomerState.getSelectionModel().getSelectedItem().getFirstLevelDivisonsId()));
+        String customerPostalCode = modifyCustomerPostalCodeTxt.getText();
+
+        int rowsAffected = CustomersConnection.updateCustomer(customerId, customerName, customerAddress , customerNumber , customerDivisionId, customerPostalCode);
+
+        if(rowsAffected > 0){
+            System.out.println("Customer updated successfully");
+        }
+
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = load(getClass().getResource("/view/appointmentsScreen.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
+
+    }
+
+    /** This method alters the items in the divisionId combo-box based upon which country the user selects */
+
+    @FXML
+    void onActionModifyCountry(ActionEvent event) throws SQLException {
+        Countries modifiedCountry = modifyCustomerCountry.getSelectionModel().getSelectedItem();
+
+        if(modifiedCountry.getCountryId() == 1){
+            modifyCustomerState.setItems(FirstLevelDivisionsConnection.getAllUSDivisions());
+        }
+
+        if(modifiedCountry.getCountryId() == 2){
+            modifyCustomerState.setItems(FirstLevelDivisionsConnection.getAllUKDivisions());
+        }
+
+        if(modifiedCountry.getCountryId() == 3){
+            modifyCustomerState.setItems(FirstLevelDivisionsConnection.getAllCanadaDivisions());
+        }
+
+    }
+
+    /** This method sends the selected customer's data to the modify-customer screen */
+
+    public void sendSelectedCustomerToModify(Customers selectedCustomerToModify) throws SQLException {
+        modifyCustomerIDTxt.setText(String.valueOf(selectedCustomerToModify.getCustomerId()));
+        modifyCustomerNameTxt.setText(String.valueOf(selectedCustomerToModify.getCustomerName()));
+        modifyCustomerAddressTxt.setText(String.valueOf(selectedCustomerToModify.getCustomerAddress()));
+        modifyCustomerContactPhone.setText(String.valueOf(selectedCustomerToModify.getCustomerNumber()));
+
+        if(selectedCustomerToModify.getCustomerDivisionId() < 56){
+            modifyCustomerCountry.setValue(CountriesConnection.getAllCountries().get(0));
+            modifyCustomerState.setValue(FirstLevelDivisionsConnection.getAllUSDivisions().get(selectedCustomerToModify.getCustomerDivisionId()-1));
+        }
+
+        if(selectedCustomerToModify.getCustomerDivisionId() > 58 && selectedCustomerToModify.getCustomerDivisionId() < 73){
+            modifyCustomerCountry.setValue(CountriesConnection.getAllCountries().get(2));
+            modifyCustomerState.setValue(FirstLevelDivisionsConnection.getAllCanadaDivisions().get(selectedCustomerToModify.getCustomerDivisionId()-60));
+        }
+
+        if(selectedCustomerToModify.getCustomerDivisionId() > 99 && selectedCustomerToModify.getCustomerDivisionId() < 199) {
+            modifyCustomerCountry.setValue(CountriesConnection.getAllCountries().get(1));
+            modifyCustomerState.setValue(FirstLevelDivisionsConnection.getAllUKDivisions().get(selectedCustomerToModify.getCustomerDivisionId()-101));
+        }
+
+        try {
+            modifyCustomerCountry.setItems(CountriesConnection.getAllCountries());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        Countries selectedCountry = (Countries) modifyCustomerCountry.getSelectionModel().getSelectedItem();
+
+        if (selectedCountry.getCountryId() == 1) {
+            try {
+                modifyCustomerState.setItems(FirstLevelDivisionsConnection.getAllUSDivisions());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (selectedCountry.getCountryId() == 2) {
+            try {
+                modifyCustomerState.setItems(FirstLevelDivisionsConnection.getAllUKDivisions());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (selectedCountry.getCountryId() == 3) {
+            try {
+                modifyCustomerState.setItems(FirstLevelDivisionsConnection.getAllCanadaDivisions());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        modifyCustomerPostalCodeTxt.setText(String.valueOf(selectedCustomerToModify.getCustomerPostalCode()));
+    }
+
+    /** This method initializes the modify-customer screen */
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+
+}
