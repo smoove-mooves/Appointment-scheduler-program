@@ -1,0 +1,9 @@
+package main;
+
+/**This interface is for the lambda expression used in the login screen */
+
+public interface loginInterface {
+
+    int incrementNum(int c);
+
+}
