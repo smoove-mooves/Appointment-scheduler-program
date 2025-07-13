@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.reportsScreenController">
+   <children>
+      <VBox layoutY="41.0" prefHeight="500.0" prefWidth="806.0">
+         <children>
+            <ComboBox fx:id="reportsSelectContact" maxHeight="-Infinity" onAction="#onActionSelectContact" prefWidth="150.0">
+               <VBox.margin>
+                  <Insets left="360.0" />
+               </VBox.margin>
+            </ComboBox>
+            <TableView fx:id="reportsTop" prefHeight="298.0" prefWidth="786.0">
+              <columns>
+                <TableColumn fx:id="reportsTopTVColumn" prefWidth="98.0" text="ID" />
+                <TableColumn fx:id="reportsTopTVTitle" prefWidth="98.0" text="Title" />
+                  <TableColumn fx:id="reportsTopTVType" prefWidth="98.0" text="Type" />
+                  <TableColumn fx:id="reportsTopTVDescription" prefWidth="98.0" text="Description" />
+                  <TableColumn fx:id="reportsTopTVLocation" prefWidth="98.0" text="Location" />
+                  <TableColumn fx:id="reportsTopTVStart" prefWidth="98.0" text="Start date/Time" />
+                  <TableColumn fx:id="reportsTopTVEnd" prefWidth="98.0" text="End date/Time" />
+                  <TableColumn fx:id="reportsTopTVCustomer" prefWidth="98.0" text="Customer ID" />
+              </columns>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </TableView>
+            <Label text="Select month:">
+               <VBox.margin>
+                  <Insets bottom="-60.0" left="10.0" />
+               </VBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="reportsMonthComboBox" onAction="#onActionSelectReportMonth" prefHeight="25.0" prefWidth="245.0">
+               <VBox.margin>
+                  <Insets left="160.0" top="30.0" />
+               </VBox.margin>
+            </ComboBox>
+            <ComboBox fx:id="reportsTypeComboBox" onAction="#onActionSelectReportType" prefHeight="25.0" prefWidth="125.0">
+               <VBox.margin>
+                  <Insets bottom="-30.0" left="280.0" top="10.0" />
+               </VBox.margin>
+            </ComboBox>
+            <Label text="Select appointment type:">
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="reportsMonthAndTypeTxt" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionDisplayTotal" prefHeight="21.0" prefWidth="31.0">
+               <VBox.margin>
+                  <Insets left="370.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <Label text="Get month/type total:">
+               <VBox.margin>
+                  <Insets left="10.0" top="-30.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="calculateTotalBtn" mnemonicParsing="false" onAction="#onActionCalculateTotal" prefHeight="25.0" prefWidth="123.0" text="Get total">
+               <VBox.margin>
+                  <Insets left="244.0" top="-28.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="reportsBackBtn" mnemonicParsing="false" onAction="#onActionExitReports" prefHeight="28.0" prefWidth="71.0" text="Back">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="reportsCancelBtn" mnemonicParsing="false" onAction="#onActionCancelReports" text="Cancel">
+               <VBox.margin>
+                  <Insets left="705.0" top="-39.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <Label text="Reports">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <padding>
+            <Insets left="306.0" top="10.0" />
+         </padding>
+      </Label>
+      <Label layoutX="22.0" layoutY="45.0" text="Select a contact:">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <padding>
+            <Insets left="233.0" />
+         </padding>
+      </Label>
+   </children>
+</AnchorPane>
