@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="240.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
+    <children>
+        <VBox prefHeight="240.0" prefWidth="620.0">
+            <children>
+                <Label fx:id="welcomeLbl" text="Welcome!" textAlignment="CENTER">
+                    <VBox.margin>
+                        <Insets left="240.0" top="20.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="System Bold" size="27.0" />
+                    </font>
+                </Label>
+                <Label fx:id="userNameLbl" text="UserName:">
+                    <VBox.margin>
+                        <Insets left="100.0" top="20.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="loginUserNameTxt" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="300.0">
+                    <VBox.margin>
+                        <Insets left="260.0" right="70.0" top="-25.0" />
+                    </VBox.margin>
+                </TextField>
+                <Label fx:id="pwLbl" text="Password:">
+                    <VBox.margin>
+                        <Insets left="100.0" top="20.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="loginPasswordTxt" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="300.0">
+                    <VBox.margin>
+                        <Insets left="260.0" right="70.0" top="-25.0" />
+                    </VBox.margin>
+                </TextField>
+                <Button fx:id="loginSubmitBtn" mnemonicParsing="false" onAction="#onActionSubmitLogin" text="Submit">
+                    <VBox.margin>
+                        <Insets left="100.0" top="20.0" />
+                    </VBox.margin>
+                </Button>
+                <Button fx:id="loginExitBtn" mnemonicParsing="false" onAction="#onActionExitProgram" text="Exit">
+                    <VBox.margin>
+                        <Insets left="185.0" top="-25.0" />
+                    </VBox.margin>
+                </Button>
+                <TextArea fx:id="loginTimeZoneTxt" disable="true" prefHeight="20.0" prefWidth="240.0">
+                    <VBox.margin>
+                        <Insets left="360.0" right="70.0" top="-30.0" />
+                    </VBox.margin>
+                </TextArea>
+            <Label fx:id="locationLbl" text="Location:">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="235.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <padding>
+                  <Insets top="-40.0" />
+               </padding>
+            </Label>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
