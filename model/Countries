@@ -1,0 +1,27 @@
+package model;
+
+/** This class is the model portion for creating country objects */
+
+public class Countries {
+
+    private int countryId;
+    private String countryName;
+
+    /** This constructor is for creating a new countries object */
+
+    public Countries(int countryId , String countryName){
+
+        this.countryId = countryId;
+        this.countryName = countryName;
+
+    }
+
+    public int getCountryId(){
+        return countryId;
+    }
+
+    @Override
+    public String toString(){
+        return countryName;
+    }
+}
