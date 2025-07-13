@@ -1,0 +1,61 @@
+package DAO;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import model.Users;
+
+import java.sql.*;
+import java.time.LocalDateTime;
+
+import static helper.JDBC.jdbcUrl;
+import static helper.JDBC.userName;
+import static helper.JDBC.password;
+import static java.sql.DriverManager.getConnection;
+
+/** This class is for all JDBC methods related to the users table in MySQL */
+
+public class UsersConnection {
+
+    /** This method gets all users from the database */
+
+    public static ObservableList<Users> getAllUsers() throws SQLException {
+
+        ObservableList<Users> UsersObservableList = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM users";
+        PreparedStatement ps = getConnection(jdbcUrl, userName, password).prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+
+            int userId = rs.getInt("User_ID");
+            String userName = rs.getString("User_Name");
+            String userPassword = rs.getString("Password");
+            LocalDateTime createDate = rs.getTimestamp("Create_Date").toLocalDateTime();
+            String createdBy = rs.getString("Created_By");
+            LocalDateTime lastUpdate = rs.getTimestamp("Last_Update").toLocalDateTime();
+            String lastUpdatedBy = rs.getString("Last_Updated_by");
+            Users user = new Users(userId, userName, userPassword, createDate, createdBy, lastUpdate, lastUpdatedBy);
+            UsersObservableList.add(user);
+        }
+
+        return UsersObservableList;
+
+    }
+
+    /** This method returns the different userIDs in the database */
+
+    public static ObservableList<Integer> getAllUserIds() throws SQLException {
+
+        ObservableList<Integer> allUserIdsObservableList = FXCollections.observableArrayList();
+        String sql = "SELECT DISTINCT User_ID FROM users";
+        PreparedStatement ps = getConnection(jdbcUrl, userName, password).prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            int User_ID = rs.getInt("User_ID");
+            allUserIdsObservableList.add(User_ID);
+        }
+
+        return allUserIdsObservableList;
+
+    }
+
+}
